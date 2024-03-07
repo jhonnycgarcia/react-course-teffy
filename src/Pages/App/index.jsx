@@ -4,13 +4,16 @@ import AppRoutes from './AppRoutes'
 import Navbar from '../../Components/Navbar'
 
 import './App.css'
+import Layout from '../../Components/Layout'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Navbar />
-      <AppRoutes />
+      <Layout>
+        <AppRoutes />
+      </Layout>
     </BrowserRouter>
   )
 }
