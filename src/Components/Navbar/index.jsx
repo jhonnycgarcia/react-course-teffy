@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import NavItem from "./NavItem";
 import { ShoppingCardContext } from "../../Context";
 
@@ -58,7 +59,10 @@ function Navbar() {
                 <li><NavItem to='/my-orders'>My Orders</NavItem></li>
                 <li><NavItem to='/my-account'>My Account</NavItem></li>
                 <li><NavItem to='/sign-in'>Sign In</NavItem></li>
-                <li>🛒 {count}</li>
+                <li className="flex items-center">
+                    <ShoppingBagIcon className="h-6 w-6 text-blue-500" />
+                    <div>{count}</div>
+                </li>
             </ul>
         </nav>
     )
