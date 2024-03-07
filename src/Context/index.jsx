@@ -1,12 +1,17 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
 const ShoppingCardContext = createContext();
 
-export const ShoppingCardProvider = ({ children }) => {
+const ShoppingCardProvider = ({ children }) => {
+    const [count, setCount] = useState(0);
+
     return (
-        <ShoppingCardContext.Provider value={{}}>
-        {children}
+        <ShoppingCardContext.Provider value={{
+            count,
+            setCount,
+        }}>
+            {children}
         </ShoppingCardContext.Provider>
     );
 }
@@ -14,3 +19,5 @@ export const ShoppingCardProvider = ({ children }) => {
 ShoppingCardProvider.propTypes = {
     children: PropTypes.node.isRequired,
 };
+
+export { ShoppingCardContext, ShoppingCardProvider };

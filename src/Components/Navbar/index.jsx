@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import NavItem from "./NavItem";
+import { ShoppingCardContext } from "../../Context";
 
 function Navbar() {
+    const { count } = useContext(ShoppingCardContext);
 
     const leftMenu = [
         {
@@ -55,7 +58,7 @@ function Navbar() {
                 <li><NavItem to='/my-orders'>My Orders</NavItem></li>
                 <li><NavItem to='/my-account'>My Account</NavItem></li>
                 <li><NavItem to='/sign-in'>Sign In</NavItem></li>
-                <li>🛒 0</li>
+                <li>🛒 {count}</li>
             </ul>
         </nav>
     )
