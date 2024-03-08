@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Home.css'
 import Card from '../../Components/Card';
-import Grid from '../../Components/Grid';
 import { ProducDetail } from '../../Components/ProducDetail';
 
 function Home() {
@@ -14,14 +13,14 @@ function Home() {
   }, []);
 
   return (
-    <Grid>
+    <>
       {
         items.map((item) => (
           <Card key={item.id} data={item}/>
         ))
       }
       <ProducDetail />
-    </Grid>
+    </>
   )
 }
 
