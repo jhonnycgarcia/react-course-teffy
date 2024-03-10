@@ -15,6 +15,7 @@ const ShoppingCardProvider = ({ children }) => {
     const [count, setCount] = useState(0);
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const [produc, setProduc] = useState(DEFAULT_PRODUCT);
+    const [cardProduct, setCardProduct] = useState([]);
 
     const openProductDetail = () => { setIsProductDetailOpen(true); };
     const closeProductDetail = () => { setIsProductDetailOpen(false); };
@@ -28,6 +29,8 @@ const ShoppingCardProvider = ({ children }) => {
             closeProductDetail,
             produc,
             setProduc,
+            cardProduct,
+            setCardProduct,
         }}>
             {children}
         </ShoppingCardContext.Provider>

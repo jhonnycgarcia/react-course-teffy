@@ -38,13 +38,19 @@ function Card({data}) {
     const { 
         setCount,
         openProductDetail,
-        setProduc
+        setProduc,
+        setCardProduct
     } = useContext(ShoppingCardContext);
 
     const showProductDetail = () => {
         setProduc(data);
         openProductDetail();
     };
+
+    const addProductToCard = () => {
+        setCardProduct((prev) => [...prev, data]);
+        setCount((prev) => prev + 1);
+    }
 
     return (
         <div 
@@ -62,7 +68,7 @@ function Card({data}) {
                 />
                 <div 
                     className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-                    onClick={() => setCount((prev) => prev + 1)}
+                    onClick={() => addProductToCard()}
                 >
                     <PlusIcon className="h-6 w-6 text-blue-500"/>
                 </div>
