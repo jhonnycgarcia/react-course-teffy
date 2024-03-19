@@ -4,6 +4,7 @@ import { ShoppingCardContext } from '../../Context';
 
 import "./CheckoutSideMenu.css";
 import { OrderCard } from '../OrderCard';
+import { totalPrice } from '../../utils';
 
 function CheckoutSideMenu() {
     const { 
@@ -11,6 +12,8 @@ function CheckoutSideMenu() {
         closeCheckoutSideMenu,
         cardProduct,
     } = useContext(ShoppingCardContext);
+
+    const productTotal = totalPrice(cardProduct);
 
     return (
         <aside 
@@ -31,6 +34,13 @@ function CheckoutSideMenu() {
                 {cardProduct.map((item) => (
                     <OrderCard key={item.id} item={item} />
                 ))}
+            </div>
+
+            <div className='px-6'>
+                <p className='flex justify-between items-center'>
+                    <span className='font-light'>Total:</span>
+                    <span className='font-medium text-2xl'>${productTotal}</span>
+                </p>
             </div>
         </aside>
     )
