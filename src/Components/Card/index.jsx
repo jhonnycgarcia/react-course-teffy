@@ -1,12 +1,8 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { PlusIcon } from '@heroicons/react/24/solid'
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 import { ShoppingCardContext } from "../../Context";
-
-Card.propTypes = {
-    data: PropTypes.object.isRequired
-};
 
 // export interface Root2 {
 //   id: number
@@ -26,6 +22,36 @@ Card.propTypes = {
 //   creationAt: string
 //   updatedAt: string
 // }
+
+const RenderIcon = ({id, trigger}) => {
+    const {cardProduct} = useContext(ShoppingCardContext);
+    const isInCart = cardProduct.some((row) => row.id === id);
+
+    if(!isInCart) {
+        return (
+            <div 
+                className="absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1"
+                onClick={(event) => trigger(event)}
+            >
+                <PlusIcon className="h-6 w-6 text-white"/>
+            </div>
+        )
+    } else {
+        return (
+            <div 
+                className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+            >
+                <CheckIcon className="h-6 w-6 text-black"/>
+            </div>
+        )
+    }
+
+}
+
+RenderIcon.propTypes = {
+    id: PropTypes.number.isRequired,
+    trigger: PropTypes.func.isRequired
+};
 
 function Card({data}) {
     const {
@@ -71,12 +97,7 @@ function Card({data}) {
                     src={images[0]} 
                     alt={title}
                 />
-                <div 
-                    className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-                    onClick={(event) => addProductToCard(event)}
-                >
-                    <PlusIcon className="h-6 w-6 text-blue-500"/>
-                </div>
+                <RenderIcon id={data.id} trigger={addProductToCard}/>
             </figure>
             <p className="flex justify-between items-center">
                 <span className="text-sm font-light">
@@ -89,5 +110,9 @@ function Card({data}) {
         </div>
     )
 }
+
+Card.propTypes = {
+    data: PropTypes.object.isRequired
+};
 
 export default Card

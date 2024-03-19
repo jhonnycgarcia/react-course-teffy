@@ -27,7 +27,7 @@ function CheckoutSideMenu() {
                 
             </div>
 
-            <div className='px-6'>
+            <div className='px-6 overflow-y-scroll'>
                 {cardProduct.map((item) => (
                     <OrderCard key={item.id} item={item} />
                 ))}
