@@ -14,7 +14,12 @@ const ShoppingCardContext = createContext();
 const ShoppingCardProvider = ({ children }) => {
     const [count, setCount] = useState(0);
     const [produc, setProduc] = useState(DEFAULT_PRODUCT);
+
     const [cardProduct, setCardProduct] = useState([]);
+    const removeProduct = (id) => {
+        const newCardProduct = cardProduct.filter((item) => item.id !== id);
+        setCardProduct(newCardProduct);
+    }
     
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const openProductDetail = () => { setIsProductDetailOpen(true); };
@@ -35,6 +40,7 @@ const ShoppingCardProvider = ({ children }) => {
             setProduc,
             cardProduct,
             setCardProduct,
+            removeProduct,
             isCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
