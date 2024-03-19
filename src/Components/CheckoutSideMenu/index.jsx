@@ -3,11 +3,13 @@ import { useContext } from 'react'
 import { ShoppingCardContext } from '../../Context';
 
 import "./CheckoutSideMenu.css";
+import { OrderCard } from '../OrderCard';
 
 function CheckoutSideMenu() {
     const { 
         isCheckoutSideMenuOpen, 
         closeCheckoutSideMenu,
+        cardProduct,
     } = useContext(ShoppingCardContext);
 
     return (
@@ -23,6 +25,12 @@ function CheckoutSideMenu() {
                     />
                 </div>
                 
+            </div>
+
+            <div className='px-6'>
+                {cardProduct.map((item) => (
+                    <OrderCard key={item.id} item={item} />
+                ))}
             </div>
         </aside>
     )
