@@ -13,12 +13,16 @@ const ShoppingCardContext = createContext();
 
 const ShoppingCardProvider = ({ children }) => {
     const [count, setCount] = useState(0);
-    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const [produc, setProduc] = useState(DEFAULT_PRODUCT);
     const [cardProduct, setCardProduct] = useState([]);
-
+    
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const openProductDetail = () => { setIsProductDetailOpen(true); };
     const closeProductDetail = () => { setIsProductDetailOpen(false); };
+
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+    const openCheckoutSideMenu = () => { setIsCheckoutSideMenuOpen(true); };
+    const closeCheckoutSideMenu = () => { setIsCheckoutSideMenuOpen(false); };
 
     return (
         <ShoppingCardContext.Provider value={{
@@ -31,6 +35,9 @@ const ShoppingCardProvider = ({ children }) => {
             setProduc,
             cardProduct,
             setCardProduct,
+            isCheckoutSideMenuOpen,
+            openCheckoutSideMenu,
+            closeCheckoutSideMenu,
         }}>
             {children}
         </ShoppingCardContext.Provider>

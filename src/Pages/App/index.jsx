@@ -7,6 +7,7 @@ import Layout from '../../Components/Layout'
 import { ShoppingCardProvider } from '../../Context'
 
 import './App.css'
+import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Layout>
           <AppRoutes />
         </Layout>
+        <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingCardProvider>
   )
