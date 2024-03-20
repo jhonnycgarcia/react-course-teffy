@@ -5,6 +5,7 @@ import { ShoppingCardContext } from '../../Context';
 import "./CheckoutSideMenu.css";
 import { OrderCard } from '../OrderCard';
 import { totalPrice } from '../../utils';
+import { Link } from 'react-router-dom';
 
 function CheckoutSideMenu() {
     const { 
@@ -12,6 +13,7 @@ function CheckoutSideMenu() {
         closeCheckoutSideMenu,
         cardProduct,
         saveOrder,
+        removeProduct,
     } = useContext(ShoppingCardContext);
 
     const productTotal = totalPrice(cardProduct);
@@ -25,6 +27,8 @@ function CheckoutSideMenu() {
         };
         saveOrder(orderToAdd);
     }
+
+    const handlerDelete = (id) => { removeProduct(id); }
 
     return (
         <aside 
@@ -43,7 +47,11 @@ function CheckoutSideMenu() {
 
             <div className='px-6 overflow-y-scroll flex-1'>
                 {cardProduct.map((item) => (
-                    <OrderCard key={item.id} item={item} />
+                    <OrderCard 
+                        key={item.id} 
+                        item={item} 
+                        handlerDelete={handlerDelete}
+                    />
                 ))}
             </div>
 
@@ -52,9 +60,12 @@ function CheckoutSideMenu() {
                     <span className='font-light'>Total:</span>
                     <span className='font-medium text-2xl'>${productTotal}</span>
                 </p>
-                <button className='bg-black w-full py-3 text-white rounded-lg' onClick={() => handlerCheckout()}>
-                    Checkout
-                </button>
+
+                <Link to='/my-orders/last'>
+                    <button className='bg-black w-full py-3 text-white rounded-lg' onClick={() => handlerCheckout()}>
+                        Checkout
+                    </button>
+                </Link>
             </div>
         </aside>
     )

@@ -1,15 +1,10 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import PropTypes from 'prop-types';
-import { useContext } from "react";
-import { ShoppingCardContext } from "../../Context";
 
-function OrderCard({ item }) {
+function OrderCard({ item, handlerDelete }) {
     const { id, title, price, images } = item;
-    const { removeProduct } =  useContext(ShoppingCardContext);
 
-    const handlerRemoveProduct = () => {
-        removeProduct(id);
-    }
+    const renderXMarkIcon = handlerDelete ? true : false;
 
     return (
         <div className="flex justify-between items-center mb-2">
@@ -21,8 +16,11 @@ function OrderCard({ item }) {
             </div>
 
             <div className="flex items-center gap-2">
-                <p className="text-lg font-medium">{price}</p>
-                <XMarkIcon className="h-6 w-6 text-blue-500 cursor-pointer" onClick={handlerRemoveProduct}/>
+                <p className="text-lg font-medium">${price}</p>
+
+                {renderXMarkIcon && (
+                    <XMarkIcon className="h-6 w-6 text-blue-500 cursor-pointer" onClick={() => handlerDelete(id)}/>
+                )}
             </div>
         </div>
     );
@@ -35,6 +33,7 @@ OrderCard.propTypes = {
         price: PropTypes.number.isRequired,
         images: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,
+    handlerDelete: PropTypes.any,
 };
 
 export { OrderCard };

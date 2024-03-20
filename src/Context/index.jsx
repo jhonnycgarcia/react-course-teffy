@@ -35,7 +35,7 @@ const ShoppingCardProvider = ({ children }) => {
 
     const [order, setOrder] = useState([]);
     const saveOrder = (orderToAdd) => {
-        setOrder(orderToAdd);
+        setOrder((prev) => [ ...prev, orderToAdd ]);
         clearCardProduct();
     }
 
