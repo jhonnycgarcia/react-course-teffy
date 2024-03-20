@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 const DEFAULT_IMAGE = "https://images.pexels.com/photos/1089842/pexels-photo-1089842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
@@ -45,8 +45,20 @@ const ShoppingCardProvider = ({ children }) => {
         clearCardProduct();
     }
 
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+      fetch('https://api.escuelajs.co/api/v1/products')
+        .then(res => res.json())
+        .then(json => setItems(json))
+    }, []);
+
+
+    const [searchByTitle, setSearchByTitle] = useState(null);
+
     return (
         <ShoppingCardContext.Provider value={{
+            items,
             count,
             setCount,
             isProductDetailOpen,
@@ -63,6 +75,8 @@ const ShoppingCardProvider = ({ children }) => {
             order,
             setOrder,
             saveOrder,
+            searchByTitle,
+            setSearchByTitle,
         }}>
             {children}
         </ShoppingCardContext.Provider>
