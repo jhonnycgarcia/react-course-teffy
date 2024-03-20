@@ -1,8 +1,27 @@
+import { useContext } from "react";
+import { ShoppingCardContext } from "../../Context";
+import { OrdersCard } from "../../Components/OrdersCard";
+import { Link } from "react-router-dom";
+
 function MyAccount() {
+  const {
+    order
+  } =  useContext(ShoppingCardContext);
 
   return (
-    <div className='bg-red-100'>
-      My Orders
+    <div className="flex- flex-col">
+      <div className="flex items-center justify-center relative w-80">
+        <h1>My Orders</h1>
+      </div>
+
+      <div>
+        {order.map((item) => (
+          <Link key={item.date} to={`/my-orders/${order.id}`}>
+            <OrdersCard order={item} />
+          </Link>
+        ))}
+      </div>
+
     </div>
   )
 }

@@ -26,6 +26,7 @@ function CheckoutSideMenu() {
             totalPrice: productTotal,
         };
         saveOrder(orderToAdd);
+        closeCheckoutSideMenu();
     }
 
     const handlerDelete = (id) => { removeProduct(id); }
