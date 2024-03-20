@@ -20,6 +20,10 @@ const ShoppingCardProvider = ({ children }) => {
         const newCardProduct = cardProduct.filter((item) => item.id !== id);
         setCardProduct(newCardProduct);
     }
+    const clearCardProduct = () => {
+        setCardProduct([]);
+        setCount(0);
+    }
     
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const openProductDetail = () => { setIsProductDetailOpen(true); };
@@ -28,6 +32,12 @@ const ShoppingCardProvider = ({ children }) => {
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
     const openCheckoutSideMenu = () => { setIsCheckoutSideMenuOpen(true); };
     const closeCheckoutSideMenu = () => { setIsCheckoutSideMenuOpen(false); };
+
+    const [order, setOrder] = useState([]);
+    const saveOrder = (orderToAdd) => {
+        setOrder(orderToAdd);
+        clearCardProduct();
+    }
 
     return (
         <ShoppingCardContext.Provider value={{
@@ -44,6 +54,9 @@ const ShoppingCardProvider = ({ children }) => {
             isCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
+            order,
+            setOrder,
+            saveOrder,
         }}>
             {children}
         </ShoppingCardContext.Provider>
