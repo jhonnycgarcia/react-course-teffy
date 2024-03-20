@@ -6,9 +6,11 @@ import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 function MyAccount() {
   const { order } = useContext(ShoppingCardContext);
+  const currentPath = window.location.pathname.split('/').pop();
+  console.log('currentPath', currentPath);
 
-  const lastOrder = order[order.length - 1];
-  const products = lastOrder?.products || [];
+  const currentOder = (currentPath === 'last') ? order[order.length - 1] : order[currentPath];
+  const products = currentOder?.products || [];
 
   return (
     <div className="flex flex-col">

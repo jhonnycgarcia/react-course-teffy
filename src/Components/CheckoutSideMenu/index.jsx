@@ -19,13 +19,12 @@ function CheckoutSideMenu() {
     const productTotal = totalPrice(cardProduct);
 
     const handlerCheckout = () => {
-        const orderToAdd = {
-            date: new Date().getSeconds(),
+        saveOrder({
+            date: new Date().getTime(),
             products: cardProduct,
             totalProducts: cardProduct.length,
             totalPrice: productTotal,
-        };
-        saveOrder(orderToAdd);
+        });
         closeCheckoutSideMenu();
     }
 

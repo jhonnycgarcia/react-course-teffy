@@ -15,8 +15,8 @@ function MyAccount() {
       </div>
 
       <div>
-        {order.map((item) => (
-          <Link key={item.date} to={`/my-orders/${order.id}`}>
+        {order.map((item, index) => (
+          <Link key={index} to={`/my-orders/${index}`}>
             <OrdersCard order={item} />
           </Link>
         ))}

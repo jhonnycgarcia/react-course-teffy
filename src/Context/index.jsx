@@ -34,8 +34,14 @@ const ShoppingCardProvider = ({ children }) => {
     const closeCheckoutSideMenu = () => { setIsCheckoutSideMenuOpen(false); };
 
     const [order, setOrder] = useState([]);
-    const saveOrder = (orderToAdd) => {
-        setOrder((prev) => [ ...prev, orderToAdd ]);
+    const saveOrder = ({date, products, totalProducts, totalPrice}) => {
+        const newOrder = {
+            date,
+            products,
+            totalProducts,
+            totalPrice,
+        };
+        setOrder((prev) => [ ...prev, newOrder ]);
         clearCardProduct();
     }
 
