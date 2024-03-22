@@ -4,52 +4,69 @@ import NavItem from "./NavItem";
 import { ShoppingCardContext } from "../../Context";
 
 function Navbar() {
-    const { count } = useContext(ShoppingCardContext);
+    const {
+        count,
+        setSearchByCategory
+    } = useContext(ShoppingCardContext);
 
     const leftMenu = [
         {
             to: '/',
+            key: '',
             label: 'Shopi',
             className: 'font-semibold text-lg'
         },
         {
             to: '/all',
+            key: 'all',
             label: 'All',
             className: ''
         },
         {
             to: '/clothes',
+            key: 'clothes',
             label: 'Clothes',
             className: ''
         },
         {
             to: '/electronics',
+            key: 'electronics',
             label: 'Electronics',
             className: ''
         },
         {
             to: '/furnitures',
+            key: 'furnitures',
             label: 'Furnitures',
             className: ''
         },
         {
             to: '/toys',
+            key: 'toys',
             label: 'Toys',
             className: ''
         },
         {
             to: '/others',
+            key: 'others',
             label: 'Others',
             className: ''
         }
     ];
+
+    const handlerNavCategoryLink = (key) => {
+        setSearchByCategory(key)
+    }
 
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
             <ul className="flex items-center gap-3">
                 {leftMenu.map((item) => (
                     <li key={item.label} className={item.className}>
-                        <NavItem to={item.to}>{item.label}</NavItem>
+                        <NavItem 
+                            to={item.to} 
+                            onClick={() => handlerNavCategoryLink(item.key)}
+                        >{item.label}</NavItem>
                     </li>
                 ))}
             </ul>
