@@ -5,7 +5,7 @@ import { ShoppingCardContext } from "../../Context";
 
 function Navbar() {
     const {
-        count,
+        cardProduct,
         setSearchByCategory
     } = useContext(ShoppingCardContext);
 
@@ -18,7 +18,7 @@ function Navbar() {
         },
         {
             to: '/all',
-            key: 'all',
+            key: '',
             label: 'All',
             className: ''
         },
@@ -78,7 +78,7 @@ function Navbar() {
                 <li><NavItem to='/sign-in'>Sign In</NavItem></li>
                 <li className="flex items-center">
                     <ShoppingBagIcon className="h-6 w-6 text-blue-500" />
-                    <div>{count}</div>
+                    <div>{cardProduct.length}</div>
                 </li>
             </ul>
         </nav>

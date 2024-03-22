@@ -42,6 +42,7 @@ const ShoppingCardProvider = ({ children }) => {
             totalPrice,
         };
         setOrder((prev) => [ ...prev, newOrder ]);
+        setSearchByTitle(null);
         clearCardProduct();
     }
 
@@ -65,7 +66,6 @@ const ShoppingCardProvider = ({ children }) => {
     }
 
     const filteredItemsByCategory = (items, searchByCategory) => {
-        console.log('items', items);
         return items?.filter((item) => {
             return item.category.name.toLowerCase().includes(searchByCategory.toLowerCase());
         });

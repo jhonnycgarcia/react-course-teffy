@@ -18,29 +18,30 @@ function Home() {
   }
 
   const renderView = () => {
-    if(searchByTitle?.length > 0){ 
-
-      if(filteredItems?.length > 0) {
-        return (
-          filteredItems.map((item) => (
-            <Card key={item.id} data={item}/>
-          ))
-        );
-      } else {
-        return (
-          <div className='w-full flex items-center justify-center'>
-            <h1 className='text-xl font-medium'>No results found</h1>
-          </div>
-        )
-      }
-
-    } else {
+    if(filteredItems?.length > 0) {
       return (
-        items.map((item) => (
+        filteredItems.map((item) => (
           <Card key={item.id} data={item}/>
         ))
       );
+    } else {
+      return (
+        <div className='w-full flex items-center justify-center'>
+          <h1 className='text-xl font-medium'>No results found</h1>
+        </div>
+      )
     }
+    // if(searchByTitle?.length > 0){ 
+
+      
+
+    // } else {
+    //   return (
+    //     items.map((item) => (
+    //       <Card key={item.id} data={item}/>
+    //     ))
+    //   );
+    // }
   }
 
   return (

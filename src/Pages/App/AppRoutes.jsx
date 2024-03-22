@@ -14,6 +14,10 @@ const AppRoutes = () => {
       element: <Home />
     },
     {
+      path: '/all',
+      element: <Home />
+    },
+    {
       path: '/clothes',
       element: <Home />
     },
